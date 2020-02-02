@@ -12,14 +12,33 @@ import os
 import random
 import re
 import sys
+from collections import Counter
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
-def sockMerchant(n, ar):
-    c = Counter(ar)
+def sockMerchant1(n, ar):
+    
+    socks = {}
+    for color in ar: 
+        count = socks.get(color, 0)
+        count += 1
+        socks[color] = count
+
     matching = 0
-    for key in c:
-        matching += c[key] // 2
+    for color in socks:
+        matching += socks[color] // 2
+
+    return matching
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+def sockMerchant2(n, ar):
+    # Counter automates dictionary lookup
+    socks = Counter(ar)
+    matching = 0
+    for color in socks:
+        matching += socks[color] // 2
     
     return matching
 
@@ -31,7 +50,7 @@ if __name__ == '__main__':
 
     ar = list(map(int, input().rstrip().split()))
 
-    result = sockMerchant(n, ar)
+    result = sockMerchant1(n, ar)
 
     fptr.write(str(result) + '\n')
 
