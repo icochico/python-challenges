@@ -30,10 +30,14 @@ import random
 import re
 import sys
 
-# Complete the hourglassSum function below.
+# Time Complexity: O(n^2)
+# Space Complexity: O(n^2)
 def hourglassSum(arr):
 
-    max = -999999 
+    # want to find the maximum hourglass sum
+    # minimum hourglass sum = -9 * 7 = -63
+    max = -63
+    
     for i in range(1, len(arr) - 1):
         for j in range(1, len(arr) - 1):
             hourglass = (arr[i][j] + 
